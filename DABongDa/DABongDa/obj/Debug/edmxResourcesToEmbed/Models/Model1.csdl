@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_bongdaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BANGTONGKET">
+    <Key>
+      <PropertyRef Name="DoiBong" />
+    </Key>
+    <Property Name="DoiBong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SoTran" Type="Int32" />
+    <Property Name="T" Type="Int32" />
+    <Property Name="B" Type="Int32" />
+    <Property Name="H" Type="Int32" />
+    <Property Name="HS" Type="Int32" />
+    <Property Name="TV" Type="Int32" />
+    <Property Name="TD" Type="Int32" />
+    <Property Name="Diem" Type="Int32" />
+    <NavigationProperty Name="DOIBONG1" Relationship="Self.FK_BANGTONGKET_DOIBONG" FromRole="BANGTONGKET" ToRole="DOIBONG" />
+  </EntityType>
+  <EntityType Name="CAUTHU">
+    <Key>
+      <PropertyRef Name="MaCT" />
+    </Key>
+    <Property Name="MaCT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoAo" Type="Int32" />
+    <Property Name="ChieuCao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CanNang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ViTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="MaDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoBanThang" Type="Int32" />
+    <Property Name="ThoiGianRaSan" Type="DateTime" Precision="0" />
+    <Property Name="SoTranThamGia" Type="Int32" />
+    <Property Name="TieuSu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DOIBONG" Relationship="Self.FK_CAUTHU_DOIBONG" FromRole="CAUTHU" ToRole="DOIBONG" />
+  </EntityType>
+  <EntityType Name="DOIBONG">
+    <Key>
+      <PropertyRef Name="MaDB" />
+    </Key>
+    <Property Name="MaDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenHLV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TieuSu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SoCauThu" Type="Int32" />
+    <Property Name="MaSVD" Type="Int32" />
+    <NavigationProperty Name="BANGTONGKET" Relationship="Self.FK_BANGTONGKET_DOIBONG" FromRole="DOIBONG" ToRole="BANGTONGKET" />
+    <NavigationProperty Name="CAUTHU" Relationship="Self.FK_CAUTHU_DOIBONG" FromRole="DOIBONG" ToRole="CAUTHU" />
+    <NavigationProperty Name="SANVANDONG" Relationship="Self.FK_DOIBONG_SANVANDONG" FromRole="DOIBONG" ToRole="SANVANDONG" />
+    <NavigationProperty Name="LICHTD" Relationship="Self.FK_LICHTD_DOIBONG" FromRole="DOIBONG" ToRole="LICHTD" />
+    <NavigationProperty Name="LICHTD1" Relationship="Self.FK_LICHTD_DOIBONG1" FromRole="DOIBONG" ToRole="LICHTD" />
+  </EntityType>
+  <EntityType Name="LICHTD">
+    <Key>
+      <PropertyRef Name="MaDB1" />
+      <PropertyRef Name="MaDB2" />
+      <PropertyRef Name="ThoiGian" />
+    </Key>
+    <Property Name="MaDB1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaDB2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ThoiGian" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaSVD" Type="Int32" />
+    <Property Name="TenTrongTai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GiamSatTrongTai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayThiDau" Type="DateTime" Precision="0" />
+    <Property Name="TySo" Type="Int32" />
+    <Property Name="Kenh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuongKG" Type="Int32" />
+    <Property Name="SuCo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DOIBONG" Relationship="Self.FK_LICHTD_DOIBONG" FromRole="LICHTD" ToRole="DOIBONG" />
+    <NavigationProperty Name="DOIBONG1" Relationship="Self.FK_LICHTD_DOIBONG1" FromRole="LICHTD" ToRole="DOIBONG" />
+  </EntityType>
+  <EntityType Name="SANVANDONG">
+    <Key>
+      <PropertyRef Name="MaSVD" />
+    </Key>
+    <Property Name="MaSVD" Type="Int32" Nullable="false" />
+    <Property Name="TenSVD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SuaChua" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="DOIBONG" Relationship="Self.FK_DOIBONG_SANVANDONG" FromRole="SANVANDONG" ToRole="DOIBONG" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="Int32" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenTK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_BANGTONGKET_DOIBONG">
+    <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="1" />
+    <End Role="BANGTONGKET" Type="Self.BANGTONGKET" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DOIBONG">
+        <PropertyRef Name="MaDB" />
+      </Principal>
+      <Dependent Role="BANGTONGKET">
+        <PropertyRef Name="DoiBong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CAUTHU_DOIBONG">
+    <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="0..1" />
+    <End Role="CAUTHU" Type="Self.CAUTHU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOIBONG">
+        <PropertyRef Name="MaDB" />
+      </Principal>
+      <Dependent Role="CAUTHU">
+        <PropertyRef Name="MaDB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOIBONG_SANVANDONG">
+    <End Role="SANVANDONG" Type="Self.SANVANDONG" Multiplicity="0..1" />
+    <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANVANDONG">
+        <PropertyRef Name="MaSVD" />
+      </Principal>
+      <Dependent Role="DOIBONG">
+        <PropertyRef Name="MaSVD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHTD_DOIBONG">
+    <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="1" />
+    <End Role="LICHTD" Type="Self.LICHTD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOIBONG">
+        <PropertyRef Name="MaDB" />
+      </Principal>
+      <Dependent Role="LICHTD">
+        <PropertyRef Name="MaDB1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LICHTD_DOIBONG1">
+    <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="1" />
+    <End Role="LICHTD" Type="Self.LICHTD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOIBONG">
+        <PropertyRef Name="MaDB" />
+      </Principal>
+      <Dependent Role="LICHTD">
+        <PropertyRef Name="MaDB2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QL_bongdaEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BANGTONGKET" EntityType="Self.BANGTONGKET" />
+    <EntitySet Name="CAUTHU" EntityType="Self.CAUTHU" />
+    <EntitySet Name="DOIBONG" EntityType="Self.DOIBONG" />
+    <EntitySet Name="LICHTD" EntityType="Self.LICHTD" />
+    <EntitySet Name="SANVANDONG" EntityType="Self.SANVANDONG" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_BANGTONGKET_DOIBONG" Association="Self.FK_BANGTONGKET_DOIBONG">
+      <End Role="DOIBONG" EntitySet="DOIBONG" />
+      <End Role="BANGTONGKET" EntitySet="BANGTONGKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CAUTHU_DOIBONG" Association="Self.FK_CAUTHU_DOIBONG">
+      <End Role="DOIBONG" EntitySet="DOIBONG" />
+      <End Role="CAUTHU" EntitySet="CAUTHU" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOIBONG_SANVANDONG" Association="Self.FK_DOIBONG_SANVANDONG">
+      <End Role="SANVANDONG" EntitySet="SANVANDONG" />
+      <End Role="DOIBONG" EntitySet="DOIBONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHTD_DOIBONG" Association="Self.FK_LICHTD_DOIBONG">
+      <End Role="DOIBONG" EntitySet="DOIBONG" />
+      <End Role="LICHTD" EntitySet="LICHTD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LICHTD_DOIBONG1" Association="Self.FK_LICHTD_DOIBONG1">
+      <End Role="DOIBONG" EntitySet="DOIBONG" />
+      <End Role="LICHTD" EntitySet="LICHTD" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

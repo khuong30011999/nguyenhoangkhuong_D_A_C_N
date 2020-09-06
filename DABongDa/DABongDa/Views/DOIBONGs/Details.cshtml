@@ -1,0 +1,83 @@
+﻿@model DABongDa.Models.DOIBONG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DOIBONG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenHLV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenHLV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TieuSu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TieuSu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoCauThu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoCauThu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BANGTONGKET.DoiBong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BANGTONGKET.DoiBong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CAUTHU.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CAUTHU.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SANVANDONG.TenSVD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SANVANDONG.TenSVD)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDB }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

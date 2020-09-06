@@ -1,0 +1,43 @@
+﻿@model DABongDa.Models.SANVANDONG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SANVANDONG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSVD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSVD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuaChua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuaChua)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSVD }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

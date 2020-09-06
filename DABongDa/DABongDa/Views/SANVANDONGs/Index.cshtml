@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DABongDa.Models.SANVANDONG>
+
+@{
+    ViewBag.Title = "Sân Vận Động";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Thêm")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenSVD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuaChua)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenSVD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuaChua)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaSVD }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaSVD }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaSVD })
+        </td>
+    </tr>
+}
+
+</table>

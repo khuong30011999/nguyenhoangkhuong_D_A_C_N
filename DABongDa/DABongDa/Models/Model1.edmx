@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QL_bongdaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BANGTONGKET">
+          <Key>
+            <PropertyRef Name="DoiBong" />
+          </Key>
+          <Property Name="DoiBong" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoTran" Type="int" />
+          <Property Name="T" Type="int" />
+          <Property Name="B" Type="int" />
+          <Property Name="H" Type="int" />
+          <Property Name="HS" Type="int" />
+          <Property Name="TV" Type="int" />
+          <Property Name="TD" Type="int" />
+          <Property Name="Diem" Type="int" />
+        </EntityType>
+        <EntityType Name="CAUTHU">
+          <Key>
+            <PropertyRef Name="MaCT" />
+          </Key>
+          <Property Name="MaCT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="SoAo" Type="int" />
+          <Property Name="ChieuCao" Type="nvarchar" MaxLength="50" />
+          <Property Name="CanNang" Type="nvarchar" MaxLength="50" />
+          <Property Name="ViTri" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="MaDB" Type="nvarchar" MaxLength="50" />
+          <Property Name="SoBanThang" Type="int" />
+          <Property Name="ThoiGianRaSan" Type="date" />
+          <Property Name="SoTranThamGia" Type="int" />
+          <Property Name="TieuSu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DOIBONG">
+          <Key>
+            <PropertyRef Name="MaDB" />
+          </Key>
+          <Property Name="MaDB" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenDB" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenHLV" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="TieuSu" Type="nvarchar(max)" />
+          <Property Name="SoCauThu" Type="int" />
+          <Property Name="MaSVD" Type="int" />
+        </EntityType>
+        <EntityType Name="LICHTD">
+          <Key>
+            <PropertyRef Name="MaDB1" />
+            <PropertyRef Name="MaDB2" />
+            <PropertyRef Name="ThoiGian" />
+          </Key>
+          <Property Name="MaDB1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaDB2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ThoiGian" Type="datetime" Nullable="false" />
+          <Property Name="MaSVD" Type="int" />
+          <Property Name="TenTrongTai" Type="nvarchar" MaxLength="50" />
+          <Property Name="GiamSatTrongTai" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayThiDau" Type="date" />
+          <Property Name="TySo" Type="int" />
+          <Property Name="Kenh" Type="nvarchar" MaxLength="50" />
+          <Property Name="SoLuongKG" Type="int" />
+          <Property Name="SuCo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SANVANDONG">
+          <Key>
+            <PropertyRef Name="MaSVD" />
+          </Key>
+          <Property Name="MaSVD" Type="int" Nullable="false" />
+          <Property Name="TenSVD" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+          <Property Name="SuaChua" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="int" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenTK" Type="nvarchar" MaxLength="50" />
+          <Property Name="MK" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_BANGTONGKET_DOIBONG">
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="1" />
+          <End Role="BANGTONGKET" Type="Self.BANGTONGKET" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DOIBONG">
+              <PropertyRef Name="MaDB" />
+            </Principal>
+            <Dependent Role="BANGTONGKET">
+              <PropertyRef Name="DoiBong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAUTHU_DOIBONG">
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="0..1" />
+          <End Role="CAUTHU" Type="Self.CAUTHU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOIBONG">
+              <PropertyRef Name="MaDB" />
+            </Principal>
+            <Dependent Role="CAUTHU">
+              <PropertyRef Name="MaDB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DOIBONG_SANVANDONG">
+          <End Role="SANVANDONG" Type="Self.SANVANDONG" Multiplicity="0..1" />
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANVANDONG">
+              <PropertyRef Name="MaSVD" />
+            </Principal>
+            <Dependent Role="DOIBONG">
+              <PropertyRef Name="MaSVD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LICHTD_DOIBONG">
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="1" />
+          <End Role="LICHTD" Type="Self.LICHTD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOIBONG">
+              <PropertyRef Name="MaDB" />
+            </Principal>
+            <Dependent Role="LICHTD">
+              <PropertyRef Name="MaDB1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LICHTD_DOIBONG1">
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="1" />
+          <End Role="LICHTD" Type="Self.LICHTD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOIBONG">
+              <PropertyRef Name="MaDB" />
+            </Principal>
+            <Dependent Role="LICHTD">
+              <PropertyRef Name="MaDB2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QL_bongdaModelStoreContainer">
+          <EntitySet Name="BANGTONGKET" EntityType="Self.BANGTONGKET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAUTHU" EntityType="Self.CAUTHU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOIBONG" EntityType="Self.DOIBONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LICHTD" EntityType="Self.LICHTD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SANVANDONG" EntityType="Self.SANVANDONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BANGTONGKET_DOIBONG" Association="Self.FK_BANGTONGKET_DOIBONG">
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+            <End Role="BANGTONGKET" EntitySet="BANGTONGKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAUTHU_DOIBONG" Association="Self.FK_CAUTHU_DOIBONG">
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+            <End Role="CAUTHU" EntitySet="CAUTHU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DOIBONG_SANVANDONG" Association="Self.FK_DOIBONG_SANVANDONG">
+            <End Role="SANVANDONG" EntitySet="SANVANDONG" />
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICHTD_DOIBONG" Association="Self.FK_LICHTD_DOIBONG">
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+            <End Role="LICHTD" EntitySet="LICHTD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICHTD_DOIBONG1" Association="Self.FK_LICHTD_DOIBONG1">
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+            <End Role="LICHTD" EntitySet="LICHTD" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QL_bongdaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BANGTONGKET">
+          <Key>
+            <PropertyRef Name="DoiBong" />
+          </Key>
+          <Property Name="DoiBong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoTran" Type="Int32" />
+          <Property Name="T" Type="Int32" />
+          <Property Name="B" Type="Int32" />
+          <Property Name="H" Type="Int32" />
+          <Property Name="HS" Type="Int32" />
+          <Property Name="TV" Type="Int32" />
+          <Property Name="TD" Type="Int32" />
+          <Property Name="Diem" Type="Int32" />
+          <NavigationProperty Name="DOIBONG1" Relationship="Self.FK_BANGTONGKET_DOIBONG" FromRole="BANGTONGKET" ToRole="DOIBONG" />
+        </EntityType>
+        <EntityType Name="CAUTHU">
+          <Key>
+            <PropertyRef Name="MaCT" />
+          </Key>
+          <Property Name="MaCT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SoAo" Type="Int32" />
+          <Property Name="ChieuCao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CanNang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ViTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="MaDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SoBanThang" Type="Int32" />
+          <Property Name="ThoiGianRaSan" Type="DateTime" Precision="0" />
+          <Property Name="SoTranThamGia" Type="Int32" />
+          <Property Name="TieuSu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DOIBONG" Relationship="Self.FK_CAUTHU_DOIBONG" FromRole="CAUTHU" ToRole="DOIBONG" />
+        </EntityType>
+        <EntityType Name="DOIBONG">
+          <Key>
+            <PropertyRef Name="MaDB" />
+          </Key>
+          <Property Name="MaDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenHLV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TieuSu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoCauThu" Type="Int32" />
+          <Property Name="MaSVD" Type="Int32" />
+          <NavigationProperty Name="BANGTONGKET" Relationship="Self.FK_BANGTONGKET_DOIBONG" FromRole="DOIBONG" ToRole="BANGTONGKET" />
+          <NavigationProperty Name="CAUTHU" Relationship="Self.FK_CAUTHU_DOIBONG" FromRole="DOIBONG" ToRole="CAUTHU" />
+          <NavigationProperty Name="SANVANDONG" Relationship="Self.FK_DOIBONG_SANVANDONG" FromRole="DOIBONG" ToRole="SANVANDONG" />
+          <NavigationProperty Name="LICHTD" Relationship="Self.FK_LICHTD_DOIBONG" FromRole="DOIBONG" ToRole="LICHTD" />
+          <NavigationProperty Name="LICHTD1" Relationship="Self.FK_LICHTD_DOIBONG1" FromRole="DOIBONG" ToRole="LICHTD" />
+        </EntityType>
+        <EntityType Name="LICHTD">
+          <Key>
+            <PropertyRef Name="MaDB1" />
+            <PropertyRef Name="MaDB2" />
+            <PropertyRef Name="ThoiGian" />
+          </Key>
+          <Property Name="MaDB1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaDB2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ThoiGian" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaSVD" Type="Int32" />
+          <Property Name="TenTrongTai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GiamSatTrongTai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayThiDau" Type="DateTime" Precision="0" />
+          <Property Name="TySo" Type="Int32" />
+          <Property Name="Kenh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuongKG" Type="Int32" />
+          <Property Name="SuCo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DOIBONG" Relationship="Self.FK_LICHTD_DOIBONG" FromRole="LICHTD" ToRole="DOIBONG" />
+          <NavigationProperty Name="DOIBONG1" Relationship="Self.FK_LICHTD_DOIBONG1" FromRole="LICHTD" ToRole="DOIBONG" />
+        </EntityType>
+        <EntityType Name="SANVANDONG">
+          <Key>
+            <PropertyRef Name="MaSVD" />
+          </Key>
+          <Property Name="MaSVD" Type="Int32" Nullable="false" />
+          <Property Name="TenSVD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SuaChua" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="DOIBONG" Relationship="Self.FK_DOIBONG_SANVANDONG" FromRole="SANVANDONG" ToRole="DOIBONG" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="Int32" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenTK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_BANGTONGKET_DOIBONG">
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="1" />
+          <End Role="BANGTONGKET" Type="Self.BANGTONGKET" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DOIBONG">
+              <PropertyRef Name="MaDB" />
+            </Principal>
+            <Dependent Role="BANGTONGKET">
+              <PropertyRef Name="DoiBong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAUTHU_DOIBONG">
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="0..1" />
+          <End Role="CAUTHU" Type="Self.CAUTHU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOIBONG">
+              <PropertyRef Name="MaDB" />
+            </Principal>
+            <Dependent Role="CAUTHU">
+              <PropertyRef Name="MaDB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DOIBONG_SANVANDONG">
+          <End Role="SANVANDONG" Type="Self.SANVANDONG" Multiplicity="0..1" />
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANVANDONG">
+              <PropertyRef Name="MaSVD" />
+            </Principal>
+            <Dependent Role="DOIBONG">
+              <PropertyRef Name="MaSVD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LICHTD_DOIBONG">
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="1" />
+          <End Role="LICHTD" Type="Self.LICHTD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOIBONG">
+              <PropertyRef Name="MaDB" />
+            </Principal>
+            <Dependent Role="LICHTD">
+              <PropertyRef Name="MaDB1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LICHTD_DOIBONG1">
+          <End Role="DOIBONG" Type="Self.DOIBONG" Multiplicity="1" />
+          <End Role="LICHTD" Type="Self.LICHTD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOIBONG">
+              <PropertyRef Name="MaDB" />
+            </Principal>
+            <Dependent Role="LICHTD">
+              <PropertyRef Name="MaDB2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QL_bongdaEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BANGTONGKET" EntityType="Self.BANGTONGKET" />
+          <EntitySet Name="CAUTHU" EntityType="Self.CAUTHU" />
+          <EntitySet Name="DOIBONG" EntityType="Self.DOIBONG" />
+          <EntitySet Name="LICHTD" EntityType="Self.LICHTD" />
+          <EntitySet Name="SANVANDONG" EntityType="Self.SANVANDONG" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_BANGTONGKET_DOIBONG" Association="Self.FK_BANGTONGKET_DOIBONG">
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+            <End Role="BANGTONGKET" EntitySet="BANGTONGKET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAUTHU_DOIBONG" Association="Self.FK_CAUTHU_DOIBONG">
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+            <End Role="CAUTHU" EntitySet="CAUTHU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DOIBONG_SANVANDONG" Association="Self.FK_DOIBONG_SANVANDONG">
+            <End Role="SANVANDONG" EntitySet="SANVANDONG" />
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICHTD_DOIBONG" Association="Self.FK_LICHTD_DOIBONG">
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+            <End Role="LICHTD" EntitySet="LICHTD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LICHTD_DOIBONG1" Association="Self.FK_LICHTD_DOIBONG1">
+            <End Role="DOIBONG" EntitySet="DOIBONG" />
+            <End Role="LICHTD" EntitySet="LICHTD" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QL_bongdaModelStoreContainer" CdmEntityContainer="QL_bongdaEntities2">
+          <EntitySetMapping Name="BANGTONGKET">
+            <EntityTypeMapping TypeName="QL_bongdaModel.BANGTONGKET">
+              <MappingFragment StoreEntitySet="BANGTONGKET">
+                <ScalarProperty Name="DoiBong" ColumnName="DoiBong" />
+                <ScalarProperty Name="SoTran" ColumnName="SoTran" />
+                <ScalarProperty Name="T" ColumnName="T" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="H" ColumnName="H" />
+                <ScalarProperty Name="HS" ColumnName="HS" />
+                <ScalarProperty Name="TV" ColumnName="TV" />
+                <ScalarProperty Name="TD" ColumnName="TD" />
+                <ScalarProperty Name="Diem" ColumnName="Diem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAUTHU">
+            <EntityTypeMapping TypeName="QL_bongdaModel.CAUTHU">
+              <MappingFragment StoreEntitySet="CAUTHU">
+                <ScalarProperty Name="MaCT" ColumnName="MaCT" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="SoAo" ColumnName="SoAo" />
+                <ScalarProperty Name="ChieuCao" ColumnName="ChieuCao" />
+                <ScalarProperty Name="CanNang" ColumnName="CanNang" />
+                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="MaDB" ColumnName="MaDB" />
+                <ScalarProperty Name="SoBanThang" ColumnName="SoBanThang" />
+                <ScalarProperty Name="ThoiGianRaSan" ColumnName="ThoiGianRaSan" />
+                <ScalarProperty Name="SoTranThamGia" ColumnName="SoTranThamGia" />
+                <ScalarProperty Name="TieuSu" ColumnName="TieuSu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOIBONG">
+            <EntityTypeMapping TypeName="QL_bongdaModel.DOIBONG">
+              <MappingFragment StoreEntitySet="DOIBONG">
+                <ScalarProperty Name="MaDB" ColumnName="MaDB" />
+                <ScalarProperty Name="TenDB" ColumnName="TenDB" />
+                <ScalarProperty Name="TenHLV" ColumnName="TenHLV" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TieuSu" ColumnName="TieuSu" />
+                <ScalarProperty Name="SoCauThu" ColumnName="SoCauThu" />
+                <ScalarProperty Name="MaSVD" ColumnName="MaSVD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LICHTD">
+            <EntityTypeMapping TypeName="QL_bongdaModel.LICHTD">
+              <MappingFragment StoreEntitySet="LICHTD">
+                <ScalarProperty Name="MaDB1" ColumnName="MaDB1" />
+                <ScalarProperty Name="MaDB2" ColumnName="MaDB2" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="MaSVD" ColumnName="MaSVD" />
+                <ScalarProperty Name="TenTrongTai" ColumnName="TenTrongTai" />
+                <ScalarProperty Name="GiamSatTrongTai" ColumnName="GiamSatTrongTai" />
+                <ScalarProperty Name="NgayThiDau" ColumnName="NgayThiDau" />
+                <ScalarProperty Name="TySo" ColumnName="TySo" />
+                <ScalarProperty Name="Kenh" ColumnName="Kenh" />
+                <ScalarProperty Name="SoLuongKG" ColumnName="SoLuongKG" />
+                <ScalarProperty Name="SuCo" ColumnName="SuCo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SANVANDONG">
+            <EntityTypeMapping TypeName="QL_bongdaModel.SANVANDONG">
+              <MappingFragment StoreEntitySet="SANVANDONG">
+                <ScalarProperty Name="MaSVD" ColumnName="MaSVD" />
+                <ScalarProperty Name="TenSVD" ColumnName="TenSVD" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SuaChua" ColumnName="SuaChua" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QL_bongdaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="QL_bongdaModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="TenTK" ColumnName="TenTK" />
+                <ScalarProperty Name="MK" ColumnName="MK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

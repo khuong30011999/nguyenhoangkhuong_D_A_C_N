@@ -1,0 +1,76 @@
+﻿@model IEnumerable<DABongDa.Models.DOIBONG>
+
+@{
+    ViewBag.Title = "Đội Bóng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenDB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenHLV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TieuSu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoCauThu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BANGTONGKET.DoiBong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CAUTHU.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SANVANDONG.TenSVD)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenDB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenHLV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TieuSu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoCauThu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BANGTONGKET.DoiBong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAUTHU.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SANVANDONG.TenSVD)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaDB }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaDB }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaDB })
+        </td>
+    </tr>
+}
+
+</table>

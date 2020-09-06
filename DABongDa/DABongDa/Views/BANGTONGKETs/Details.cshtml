@@ -1,0 +1,91 @@
+﻿@model DABongDa.Models.BANGTONGKET
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Bảng tổng kết</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoTran)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoTran)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.B)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.B)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.H)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.H)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOIBONG1.TenDB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOIBONG1.TenDB)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.DoiBong }) |
+    @Html.ActionLink("Thoát", "Index")
+</p>
